@@ -1,15 +1,61 @@
-const int r=5;
-const int g=6;
-const int b=3;
+//constants
+
+const int rPin = 5;
+const int gPin = 6;
+const int bPin = 3;
+
+const int lowerBound = (1/4)*255;
+const int upperBound = (3/4)*255;
+
+const int variation = 5;
+const int boundWeight = 3/4;
+
+//initialize variables
+int rValue;
+int rValue;
+int rValue;
+
+int average;
 
 void setup() {
-  pinMode(r,OUTPUT);
-  pinMode(g,OUTPUT);
-  pinMode(b,OUTPUT);
+  //set pinout
+  pinMode(rPin, OUTPUT);
+  pinMode(gPin, OUTPUT);
+  pinMode(bPin, OUTPUT);
+
+  //set lights to random values
+  int rValue = random(0, 255);
+  int rValue = random(0, 255);
+  int rValue = random(0, 255);
+
 }
 
 void loop() {
-  analogWrite(r,255);
-  analogWrite(g,255);
-  analogWrite(b,-255);
+  average = (rValue + gValue + bValue) / 3;
+
+  //randomly change pin values
+  if (average < lowerBound) {
+    int lowerVariation = (1 - boundWeight) * variation;
+    int upperVariation = (boundWeight) * variation;
+    rValue = random(rValue - lowerVariation, rValue + upperVariation);
+    gValue = random(gValue - lowerVariation, gValue + upperVariation);
+    bValue = random(bValue - lowerVariation, bValue + upperVariation);
+  }
+  else if (average > upperBound) {
+    int lowerVariation = (boundWeight) * variation;
+    int upperVariation = (1 - boundWeight) * variation;
+    rValue = random(rValue - lowerVariation, rValue + upperVariation);
+    gValue = random(gValue - lowerVariation, gValue + upperVariation);
+    bValue = random(bValue - lowerVariation, bValue + upperVariation);
+  }
+  else {
+    rValue = random(rValue - variation, rValue + variation);
+    gValue = random(gValue - variation, gValue + variation);
+    bValue = random(bValue - variation, bValue + variation);
+  }
+
+  //write values to pins
+  analogWrite(rPin, 255);
+  analogWrite(gPin, 255);
+  analogWrite(bPin, 255);
 }
