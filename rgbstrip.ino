@@ -4,11 +4,12 @@ const int rPin = 5;
 const int gPin = 6;
 const int bPin = 3;
 
-const int lowerBound = (1/4)*255;
-const int upperBound = (3/4)*255;
+const float margin = 1 / 4;
+const int lowerBound = margin * 255;
+const int upperBound = (1 - margin) * 255;
 
 const int variation = 5;
-const int boundWeight = 3/4;
+const float boundWeight = 3 / 4;
 
 //initialize variables
 int rValue;
@@ -36,13 +37,13 @@ void loop() {
   //randomly change pin values
   if (average < lowerBound) {
     int lowerVariation = (1 - boundWeight) * variation;
-    int upperVariation = (boundWeight) * variation;
+    int upperVariation = boundWeight * variation;
     rValue = random(rValue - lowerVariation, rValue + upperVariation);
     gValue = random(gValue - lowerVariation, gValue + upperVariation);
     bValue = random(bValue - lowerVariation, bValue + upperVariation);
   }
   else if (average > upperBound) {
-    int lowerVariation = (boundWeight) * variation;
+    int lowerVariation = boundWeight * variation;
     int upperVariation = (1 - boundWeight) * variation;
     rValue = random(rValue - lowerVariation, rValue + upperVariation);
     gValue = random(gValue - lowerVariation, gValue + upperVariation);
