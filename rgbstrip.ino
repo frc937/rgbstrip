@@ -12,9 +12,9 @@ const int variation = 5;
 const float boundWeight = 3 / 4;
 
 //initialize variables
-int rValue;
-int rValue;
-int rValue;
+int rVal;
+int gVal;
+int bVal;
 
 int average;
 
@@ -24,35 +24,35 @@ void setup() {
   pinMode(gPin, OUTPUT);
   pinMode(bPin, OUTPUT);
 
-  //set lights to random values
-  int rValue = random(0, 255);
-  int rValue = random(0, 255);
-  int rValue = random(0, 255);
+  //set lights to random Vals
+  int rVal = random(0, 255);
+  int gVal = random(0, 255);
+  int bVal = random(0, 255);
 
 }
 
 void loop() {
-  average = (rValue + gValue + bValue) / 3;
+  average = (rVal + gVal + bVal) / 3;
 
   //randomly change pin values
   if (average < lowerBound) {
     int lowerVariation = (1 - boundWeight) * variation;
     int upperVariation = boundWeight * variation;
-    rValue = random(rValue - lowerVariation, rValue + upperVariation);
-    gValue = random(gValue - lowerVariation, gValue + upperVariation);
-    bValue = random(bValue - lowerVariation, bValue + upperVariation);
+    rVal = random(rVal - lowerVariation, rVal + upperVariation);
+    gVal = random(gVal - lowerVariation, gVal + upperVariation);
+    bVal = random(bVal - lowerVariation, bVal + upperVariation);
   }
   else if (average > upperBound) {
     int lowerVariation = boundWeight * variation;
     int upperVariation = (1 - boundWeight) * variation;
-    rValue = random(rValue - lowerVariation, rValue + upperVariation);
-    gValue = random(gValue - lowerVariation, gValue + upperVariation);
-    bValue = random(bValue - lowerVariation, bValue + upperVariation);
+    rVal = random(rVal - lowerVariation, rVal + upperVariation);
+    gVal = random(gVal - lowerVariation, gVal + upperVariation);
+    bVal = random(bVal - lowerVariation, bVal + upperVariation);
   }
   else {
-    rValue = random(rValue - variation, rValue + variation);
-    gValue = random(gValue - variation, gValue + variation);
-    bValue = random(bValue - variation, bValue + variation);
+    rVal = random(rVal - variation, rVal + variation);
+    gVal = random(gVal - variation, gVal + variation);
+    bVal = random(bVal - variation, bVal + variation);
   }
 
   //write values to pins
