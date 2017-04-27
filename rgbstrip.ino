@@ -8,7 +8,7 @@ const float margin = 1 / 4;
 const int lowerBound = margin * 255;
 const int upperBound = (1 - margin) * 255;
 
-const int variation = 20;
+const int variation = 3;
 const float boundWeight = 3 / 4;
 
 //initialize variables
